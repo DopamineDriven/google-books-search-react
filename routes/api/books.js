@@ -5,10 +5,7 @@ const booksController = require('../../controllers/booksController.js');
 router
     .route('/')
     .get(booksController.findAll)
-
-router
-    .route('/create')
-    .put(booksController.create)
+    .post(booksController.create)
 
 
 // Matches with '/api/books/:id'
