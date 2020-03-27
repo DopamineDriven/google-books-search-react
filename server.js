@@ -19,7 +19,7 @@ app.use(routes);
 // connect to MongoDB
 const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds347665.mlab.com:47665/heroku_00fjp6g3`
 console.log(MONGODB_URI)
-mongoose.connect("mongodb://localhost/react-google-books-search", {
+mongoose.connect("mongodb://localhost/google-books-search-react", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
