@@ -12,13 +12,13 @@
     float: right;
 }
 
-.nav-link{
+.nav-item{
   display: inline-block;
   color: #F0F2F0;
   font-size: larger;
 }
 
-.nav-link:active{
+.nav-item:active{
   display: inline-block;
   color: #F0F2F0;
   font-size: larger;
@@ -31,4 +31,10 @@
 
 .navbar-item {
   float: right;
+}
+
+.navbar-nav {
+  color: #F0F2F0;
+  display: inline-block;
+  font-size: larger;
 }

@@ -41,6 +41,7 @@ const Navbar = () => {
                             Home
                         </Link>
                     </li>
+                    &nbsp;|&nbsp;
                     <li className="nav-item">
                         <Link
                             to="/search" 
@@ -52,6 +53,7 @@ const Navbar = () => {
                             Search
                         </Link>
                     </li>
+                    &nbsp;|&nbsp;
                     <li className="nav-item">
                         <Link
                             to="/saved" 

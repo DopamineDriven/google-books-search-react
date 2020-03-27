@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron/Jumbotron.jsx";
 import Wrapper from "../components/Wrapper/Wrapper.jsx";
 import API from "../utils/API.js";
 import { Col, Row, Container } from "../components/Grid/Grid.jsx";
@@ -7,6 +6,7 @@ import { List, ListItem } from "../components/List/List.jsx";
 import Moment from "moment";
 import { toast } from "react-toastify";
 import './Pages.css'
+import Jumbotron from '../components/Jumbotron/Jumbotron.jsx';
 
 class Search extends Component {
     state = {
@@ -65,24 +65,26 @@ class Search extends Component {
     }
 
     handleFormSubmit = event => {
+        console.log(this.state.query)
         event.preventDefault(this.state.query);
         toast.info('Searching books...')
         this.fetchBooksGoogle();
     }
 
-    handleSaveBook = id => {
-        const book = this.state.books.find(book => book.id === id)
-
-        API.saveBook({
-            googleId: book.id,
-            title: book.volumeInfo.title,
-            subtitle: book.volumeInfo.subtitle,
-            authors: book.volumeInfo.authors,
-            link: book.volumeInfo.infoLink,
-            date: book.volumeInfo.publishedDate,
-            description: book.volumeInfo.description,
-            image: book.volumeInfo.imageLinks.thumbnail
-        }).then(() => this.fetchBooksGoogle()
+    handleSaveBook = (id) => {
+        let objectBooks = this.state.books.filter(objectBooks => objectBooks.id === id)
+        console.log(this.state.objectBooks)
+        objectBooks = objectBooks[0];
+        API.saveBook({objectBooks
+            // googleId: book.id,
+            // title: book.volumeInfo.title,
+            // subtitle: book.volumeInfo.subtitle,
+            // authors: book.volumeInfo.authors,
+            // link: book.volumeInfo.infoLink,
+            // date: book.volumeInfo.publishedDate,
+            // description: book.volumeInfo.description,
+            // image: book.volumeInfo.imageLinks.thumbnail
+        }).then(() => this.setState({ errorMsg: alert("Book saved")})
             // console.log(book.volumeInfo)
             // this.setState({
             //     books: this.state.books.filter(book => book.id !== id)
@@ -93,18 +95,7 @@ class Search extends Component {
     render() {
         return (
             <Container>
-                <Row>
-                    <Col size="md-12">
-                        <Jumbotron className="jumbo">
-                            <h1 className="text-center text-bold">
-                                React Google Books Search
-                            </h1>
-                            <h2 className="text-center">
-                                Search for and Save Books
-                            </h2>
-                        </Jumbotron>
-                    </Col>
-                </Row>
+                <Jumbotron />
                 <Row className="rowSearch">
                     <Col size="md-12">
                         <Wrapper>
@@ -164,8 +155,9 @@ class Search extends Component {
                                     <button 
                                         className="btn save-button heading-subtitle ml-2" 
                                         type="btn btn-md" 
-                                        label="search" 
-                                        onClick={() => this.handleSaveBook(book.id)}
+                                        label="search"
+                                        book={this.state.books}
+                                        onClick={() => this.handleSaveBook(book)}
                                     >
                                         Save
                                     </button>

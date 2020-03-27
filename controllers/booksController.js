@@ -21,7 +21,7 @@ module.exports = {
             .findById({ _id: request.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => response.json(dbModel))
-            .catch(error => response.status(420).json(error))
+            .catch(error => response.status(422).json(error))
     },
     getGoogleBooks: (request, response) => {
         require('dotenv').config();
@@ -31,6 +31,6 @@ module.exports = {
         axios.get(url)
             .then((respond) => {
                 response.json(respond.data)
-            }).catch(error => response.status(419).json(error))
+            }).catch(error => response.status(422).json(error))
     }    
 };

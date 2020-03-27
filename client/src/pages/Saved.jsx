@@ -8,6 +8,7 @@ import Moment from 'moment';
 import './Pages.css';
 import { toast } from 'react-toastify';
 
+
 // Utilizing functional over class components
 const Saved = () => {
 
@@ -48,18 +49,7 @@ const Saved = () => {
 
     return (
         <Container>
-            <Row>
-                <Col size="md-12">
-                    <Jumbotron className="jumbo">
-                        <h1 className="text-center text-bold">
-                            React Google Books Search
-                        </h1>
-                        <h2 className="text-center">
-                            Search for and Save Books
-                        </h2>
-                    </Jumbotron>
-                </Col>
-            </Row>
+            <Jumbotron />
             <Row>
                 <Col size="md-12 sm-12">
                     {books.length ? (
