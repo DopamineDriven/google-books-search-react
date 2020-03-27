@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     // use state expanded and setExpanded onClick
-    // circle back puta
+    // circle back
   return (
       <React.Fragment>
         <nav className="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
