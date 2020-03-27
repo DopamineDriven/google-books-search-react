@@ -55,7 +55,7 @@ const Saved = () => {
                         <List>
                             {books.map(book => (
                                 <ListItem key = {book._id}>
-                                                                            <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                        <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
                                         <br/>
                                         <img src={book.image} alt={book.title} className="bookImage" />
                                         <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>

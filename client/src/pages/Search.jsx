@@ -81,7 +81,7 @@ class Search extends Component {
             image: book.volumeInfo.imageLinks.thumbnail
         }).then((res) => {
             console.log(res.config)
-            this.props.history.push("/saved/")})
+            this.props.history.push("/api/books")})
     }
 
     render() {
@@ -132,7 +132,7 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                        <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                    <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
                                         <br/>
                                         <img src={book.image} alt={book.title} className="bookImage" />
                                         <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>
