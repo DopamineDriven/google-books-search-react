@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Jumbotron from '../components/Jumbotron/Jumbotron.jsx'
 import Card from "../components/Card/Card.jsx";
-import Footer from '../components/Footer/Footer.jsx';
 import API from '../utils/API.js';
 import { Col, Row, Container } from '../components/Grid/Grid.jsx';
-import { List } from '../components/List/List.jsx';
+import { List, ListItem } from '../components/List/List.jsx';
+import DeleteBtn from '../components/DeleteBtn/DeleteBtn.jsx';
 
 class Saved extends Component {
     state = {
@@ -48,7 +48,16 @@ class Saved extends Component {
                         <Card title="Saved Books" icon="download">
                             {this.state.books.length ? (
                                 <List>
-                                    
+                                    {this.state.books.map(book => (
+                                        <ListItem key={book._id}>
+                                            <a href={book.link} rel="noreferrer" target="__blank">{book.title}<br/>{book.subtitle}</a>
+                                            <img src={book.image} alt={book.title} className="bookImage" />
+                                            <p className="listAuthor">Author(s): {book.authors}</p>
+                                            <p className="listPublish">Published: {Moment(book.date, 'YYYY-MM-DDTHh:mm:ss').format("MM-DD-YYYY")}</p>
+                                            <p className="listDescription">{book.description}</p>
+                                            <DeleteBtn className="deleteButton" onClick={() => handleDiscardBook(book._id)}/>
+                                        </ListItem>
+                                    ))}
                                 </List>
                             ): (
                                 <h2 className="text-center">No saved books.</h2>
