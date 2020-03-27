@@ -41,6 +41,7 @@ class Search extends Component {
 
     handleInputDelta = event => {
         const { name, value } = event.target;
+        console.log(value)
         this.setState({
             [name]: value
         })
@@ -63,7 +64,7 @@ class Search extends Component {
     }
 
     handleFormSubmit = event => {
-        event.preventDefault();
+        event.preventDefault(this.state.query);
         this.fetchBooksGoogle();
     }
 
@@ -71,7 +72,7 @@ class Search extends Component {
         const book = this.state.books.find(book => book.id === id)
 
         API.saveBook({
-            googleId: book.id,
+            googleid: book.id,
             title: book.volumeInfo.title,
             subtitle: book.volumeInfo.subtitle,
             authors: book.volumeInfo.authors,
@@ -79,10 +80,14 @@ class Search extends Component {
             date: book.volumeInfo.publishedDate,
             description: book.volumeInfo.description,
             image: book.volumeInfo.imageLinks.thumbnail
-        }).then((res) => {
-            console.log(res.config)
-            this.props.history.push("/api/books")})
-    }
+        })
+            .then(() => {
+            console.log(book.volumeInfo)
+            this.setState({
+                books: this.state.books.filter(book => book.id !== id)
+              });
+            }).catch(err => console.log(err));
+          }
 
     render() {
         return (

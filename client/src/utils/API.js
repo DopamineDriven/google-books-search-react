@@ -20,3 +20,7 @@ export default {
         return axios.post("/api/books", bookData)
     }
 };
+
+// saveBook: function(bookInfo) {
+//     return axios.post(`/${bookInfo.id}`);
+// }

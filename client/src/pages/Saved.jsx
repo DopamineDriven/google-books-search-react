@@ -6,6 +6,7 @@ import { List, ListItem } from '../components/List/List.jsx';
 import DeleteBtn from '../components/DeleteBtn/DeleteBtn.jsx';
 import Moment from 'moment';
 import './Pages.css';
+import { toast } from 'react-toastify';
 
 // Utilizing functional over class components
 const Saved = () => {
@@ -29,10 +30,20 @@ const Saved = () => {
     }
 
     // handles the deletion of a book by id from the saved page
-    const handleDiscardBook = id => {
-        API.deleteBook(id)
-            .then(handleFetchBooks())
-            .catch(error => console.log(error))
+    const handleDiscardBook = async id => {
+        const ogBooks = books;
+        try {
+            await API.deleteBook(id)
+                .then(res => this.handleFetchBooks())
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404) {
+                toast.error("this book has been deleted")
+                .then({ setBooks: ogBooks })
+            }
+        }
+        // API.deleteBook(id)
+        //     .then(handleFetchBooks())
+        //     .catch(error => console.log(error))
     };
 
     return (

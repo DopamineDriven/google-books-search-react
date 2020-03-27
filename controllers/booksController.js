@@ -14,7 +14,7 @@ module.exports = {
         db.Book
             .create(request.body)
             .then(dbModel => response.json(dbModel))
-            .catch(error => response.status(421).json(error))
+            .catch(error => response.status(422).json(error))
     },
     remove: (request, response) => {
         db.Book
