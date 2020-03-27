@@ -55,11 +55,13 @@ const Saved = () => {
                         <List>
                             {books.map(book => (
                                 <ListItem key = {book._id}>
-                                    <a href={book.link} rel="noreferrer" target="__blank"><br/>{book.title}<br/>{book.subtitle}</a>
-                                    <img src={book.image} alt={book.title} className="bookImage" />
-                                    <p className="listAuthor">Author(s): {book.authors}</p>
-                                    <p className="listPublish">Published: {Moment(book.date, 'YYYY-MM-DDTHh:mm:ss').format("MM-DD-YYYY")}</p>
-                                    <p className="listDescription">{book.description}</p>
+                                                                            <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                        <br/>
+                                        <img src={book.image} alt={book.title} className="bookImage" />
+                                        <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>
+                                        <p className="listPublish">Published:&nbsp;{Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                            .format("MM-DD-YYYY")}</p>
+                                        <p className="listDescription">Description:&nbsp;{book.description}</p>
                                     <DeleteBtn className="deleteButton" onClick={() => handleDiscardBook(book._id)}/>
                                 </ListItem>
                             ))}

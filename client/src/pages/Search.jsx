@@ -11,7 +11,7 @@ class Search extends Component {
     state = {
         books: [],
         query: "",
-        errorMsg: 'Input Book Title'
+        errorMsg: ''
      }
 
      loadBooks = (data) => {
@@ -22,6 +22,7 @@ class Search extends Component {
                     // unique id
                     id: data[i].id,
                     title: data[i].volumeInfo.title,
+                    subtitle: data[i].volumeInfo.subtitle,
                     authors: data[i].volumeInfo.authors,
                     // published date
                     publishedDate: data[i].volumeInfo.publishedDate,
@@ -79,7 +80,8 @@ class Search extends Component {
             description: book.volumeInfo.description,
             image: book.volumeInfo.imageLinks.thumbnail
         }).then((res) => {
-            this.props.history.push("/saved")})
+            console.log(res.config)
+            this.props.history.push("/saved/")})
     }
 
     render() {
@@ -101,7 +103,7 @@ class Search extends Component {
                     <Col size="md-12">
                         <Wrapper>
                             <form className="searchForm">
-                                <p className="searchFormHeading">Book Search</p>
+                                <p className="searchFormHeading text-white">Book Search</p>
                                     <Input 
                                         className="searchFormInput"
                                         value={this.state.query}
@@ -130,15 +132,13 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                        <a href={book.link} rel="noreferrer" target="__blank"><br/>{book.title}<br/>{book.subtitle}</a>
+                                        <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                        <br/>
                                         <img src={book.image} alt={book.title} className="bookImage" />
-                                        <p className="listAuthor">Author(s): {book.authors}</p>
-                                        <p className="listImage">Image: {book.image}</p>
-                                        <p className="listImage">Link: {book.infoLink}</p>
-                                        <p className="listPublish">Published: 
-                                            {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                        <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>
+                                        <p className="listPublish">Published:&nbsp;{Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
                                             .format("MM-DD-YYYY")}</p>
-                                        <p className="listDescription">{book.description}</p>
+                                        <p className="listDescription">Description:&nbsp;{book.description}</p>
                                         <button className="listButton" type="btn btn-md" label="search" 
                                         onClick={() => this.handleSaveBook(book.id)}>
                                             <i className="fas fa-save"></i></button>
