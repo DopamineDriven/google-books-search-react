@@ -10,6 +10,9 @@ const booksSchema = new Schema({
         type: String,
         required: true
     },
+    subtitle: {
+        type: String
+    },
     authors: {
         type: String,
         required: true
