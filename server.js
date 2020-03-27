@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// serve up static assets (usually on Heroku)
+// serving up static assets (usually on Heroku)
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"))
 };
@@ -22,7 +22,9 @@ app.use(routes);
 // connect to MongoDB
 const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds347665.mlab.com:47665/heroku_00fjp6g3`
 console.log(MONGODB_URI)
-mongoose.connect("mongodb://localhost/google-books-search-react", {
+const remotely = process.env.MONGODB_URI
+const locally = "mongodb://localhost/google-books-search-react"
+mongoose.connect(remotely || locally, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
@@ -31,5 +33,8 @@ mongoose.connect("mongodb://localhost/google-books-search-react", {
 
 // Start API server
 app.listen(PORT, () => {
-    console.log(`🌎 ==> API Server now listening on PORT http://localhost:${PORT}!`);
+  if (remotely) {
+    console.log(`🌎 ==> API Server now listening remotely on heroku `);
+  }
+    console.log(`🌎 ==> API Server now listening on http://localhost:${PORT}!`);
 });
