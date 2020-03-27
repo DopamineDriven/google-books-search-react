@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <div className="container-fluid">
-            <a href="/" className="navbar-brands">
+            <a href="/" className="navbar-brand">
                 <img src={ReactLogo} alt="react" className="img-fluid" height="99.66px" width="99.6px"/>
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
