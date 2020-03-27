@@ -1,3 +1,10 @@
 .contains {
     height: fit-content;
 }
+
+.fas{
+    color: black;
+    justify-content: space-between;
+    margin: auto;
+    width: 20%;
+}

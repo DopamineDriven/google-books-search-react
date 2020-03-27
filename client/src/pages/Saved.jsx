@@ -3,10 +3,8 @@ import Jumbotron from '../components/Jumbotron/Jumbotron.jsx'
 import API from '../utils/API.js';
 import { Col, Row, Container } from '../components/Grid/Grid.jsx';
 import { List, ListItem } from '../components/List/List.jsx';
-import DeleteBtn from '../components/DeleteBtn/DeleteBtn.jsx';
 import Moment from 'moment';
 import './Pages.css';
-import { toast } from 'react-toastify';
 
 
 // Utilizing functional over class components
@@ -31,21 +29,12 @@ const Saved = () => {
     }
 
     // handles the deletion of a book by id from the saved page
-    const handleDiscardBook = async id => {
-        const ogBooks = books;
-        try {
-            await API.deleteBook(id)
-                .then(res => this.handleFetchBooks())
-        } catch (ex) {
-            if (ex.response && ex.response.status === 404) {
-                toast.error("this book has been deleted")
-                .then({ setBooks: ogBooks })
-            }
-        }
-        // API.deleteBook(id)
-        //     .then(handleFetchBooks())
-        //     .catch(error => console.log(error))
+    const handleDiscardBook = id => {
+        API.deleteBook(id)
+            .then(handleFetchBooks())
+            .catch(error => console.log(error))
     };
+
 
     return (
         <Container>
@@ -56,14 +45,31 @@ const Saved = () => {
                         <List>
                             {books.map(book => (
                                 <ListItem key = {book._id}>
-                                        <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                    <a href={book.link} rel="noreferrer" target="__blank">
+                                        {book.title}&nbsp;—&nbsp;{book.subtitle}
+                                    </a>
                                         <br/>
-                                        <img src={book.image} alt={book.title} className="bookImage" />
-                                        <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>
-                                        <p className="listPublish">Published:&nbsp;{Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
-                                            .format("MM-DD-YYYY")}</p>
-                                        <p className="listDescription">Description:&nbsp;{book.description}</p>
-                                    <DeleteBtn className="deleteButton" onClick={() => handleDiscardBook(book._id)}/>
+                                    <img src={book.image} alt={book.title} className="bookImage" />
+                                    <p className="listAuthor">
+                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
+                                    </p>
+                                    <p className="listPublish">
+                                    <strong>Pulished:</strong>&nbsp;
+                                        {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                        .format("MM-DD-YYYY")}
+                                    </p>
+                                    <p className="listDescription">
+                                        <strong>Description:</strong>&nbsp;{book.description}
+                                    </p>
+                                    <button 
+                                        className="deleteButton btn delete-button heading-subtitle ml-2"
+                                        type="btn btn-md"
+                                        lavel="delete"
+                                        onClick={() => 
+                                            handleDiscardBook(book._id)}
+                                    >
+                                        <strong>Delete</strong>
+                                    </button>
                                 </ListItem>
                             ))}
                         </List>

@@ -13,6 +13,16 @@
     border: 1px solid black;
 }
 
+.delete-button {
+    border: 1px solid black;
+}
+
 .listDescription {
     text-align: justify;
+}
+
+.form-inline {
+    align-items: center;
+    align-self: center;
+
 }

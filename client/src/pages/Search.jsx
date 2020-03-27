@@ -74,12 +74,14 @@ class Search extends Component {
     handleSaveBook = (pBook) => {
         // destructure id
         const { id } = pBook;
-        const library = [...this.state.books ] 
+        // use spread to clone state
+        const library = [ ...this.state.books ] 
+        // get element [0] of array
         const bookToSave = library.filter( book =>book.id === id)[0]
 
-   
-        API.saveBook({...bookToSave
-        }).then(() => this.setState({ errorMsg: alert("Book saved")})
+        // save
+        API.saveBook(bookToSave)
+        .then(() => this.setState({ errorMsg: alert(`${bookToSave.title} saved`)})
             // console.log(book.volumeInfo)
             // this.setState({
             //     books: this.state.books.filter(book => book.id !== id)
@@ -94,7 +96,7 @@ class Search extends Component {
                 <Row className="rowSearch">
                     <Col size="md-12">
                         <Wrapper>
-                            <form className="form-inline">
+                            <form className="form-inline justify-content-center">
                                 <div className="form-group mx-sm-3 mb-2">
                                     <label htmlFor="Title" className="sr-only">
                                         Search Book Title
@@ -137,15 +139,15 @@ class Search extends Component {
                                         <br/>
                                     <img src={book.image} alt={book.title} className="bookImage" />
                                     <p className="listAuthor">
-                                        Author(s):&nbsp;{book.authors.join(", ")}
+                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
                                     </p>
                                     <p className="listPublish">
-                                        Published:&nbsp;
+                                    <strong>Pulished:</strong>&nbsp;
                                         {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
                                         .format("MM-DD-YYYY")}
                                     </p>
                                     <p className="listDescription">
-                                        Description:&nbsp;{book.description}
+                                        <strong>Description:</strong>&nbsp;{book.description}
                                     </p>
                                     <button 
                                         className="btn save-button heading-subtitle ml-2" 
@@ -154,7 +156,7 @@ class Search extends Component {
                                         book={this.state.books}
                                         onClick={() => this.handleSaveBook(book)}
                                     >
-                                        Save
+                                       <strong>Save</strong>
                                     </button>
                                     </ListItem>
                                     </React.Fragment>

@@ -17,7 +17,7 @@ const Navbar = () => {
                 <img src={ReactLogo} alt="react" className="img-fluid" height="99.66px" width="99.6px"/>
             </Link>
             
-            <button
+            {/* <button
                 className="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
@@ -27,8 +27,8 @@ const Navbar = () => {
                 aria-label="Toggle navigation"
             >
             <span className="navbar-toggler-icon" />
-            </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+            </button> */}
+        {/* <div className="collapse navbar-collapse" id="navbarNav"> */}
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <Link 
@@ -66,7 +66,7 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
-           </div>
+           {/* </div> */}
     </nav>
     </React.Fragment>
   )

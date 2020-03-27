@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const booksSchema = new Schema({
-    googleId: {
+    id: {
         type: String || Number,
         required: true
     },
@@ -14,7 +14,7 @@ const booksSchema = new Schema({
         type: String
     },
     authors: {
-        type: String,
+        type: Array,
         required: true
     },
     description: {
@@ -26,7 +26,7 @@ const booksSchema = new Schema({
     link: {
         type: String || URL
     },
-    date: {
+    publishedDate: {
         type: Date,
         default: Date.now
     }
@@ -34,7 +34,7 @@ const booksSchema = new Schema({
 // a unique googleId must be indexed for each saved book
 // else, throw error, do not store in database
 booksSchema.index({
-    googleId: 1,
+    id: 1,
 }, {
     unique: true
 });
