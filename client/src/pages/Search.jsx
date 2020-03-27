@@ -6,6 +6,7 @@ import { Col, Row, Container } from "../components/Grid/Grid.jsx";
 import { List, ListItem } from "../components/List/List.jsx";
 import { Input, FormBtn } from "../components/Form/Form.jsx";
 import Moment from "moment";
+import { toast } from "react-toastify";
 
 class Search extends Component {
     state = {
@@ -53,8 +54,8 @@ class Search extends Component {
                 .then(res => {
                     this.loadBooks(res.data.items)
                 })
-                .catch(error => {
-                    console.log(error)
+                .catch(() => {
+                    toast.error('Search did not match any book results')
                     this.setState({
                         books: [],
                         errorMsg: "No books found related to your query"
@@ -137,16 +138,17 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={book.link} rel="noreferrer" target="__blank">{book.title}&nbsp;—&nbsp;{book.subtitle}</a>
+                                    <a href={book.volumeInfo.infoLink} rel="noreferrer" target="__blank">{book.volumeInfo.title}&nbsp;—&nbsp;{book.volumeInfo.subtitle}</a>
                                         <br/>
-                                        <img src={book.image} alt={book.title} className="bookImage" />
-                                        <p className="listAuthor">Author(s):&nbsp;{book.authors}</p>
-                                        <p className="listPublish">Published:&nbsp;{Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                        <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} className="bookImage" />
+                                        <p className="listAuthor">Author(s):&nbsp;{book.volumeInfo.authors.join(", ")}</p>
+                                        <p className="listPublish">Published:&nbsp;{Moment(book.volumeInfo.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
                                             .format("MM-DD-YYYY")}</p>
-                                        <p className="listDescription">Description:&nbsp;{book.description}</p>
-                                        <button className="listButton" type="btn btn-md" label="search" 
+                                        <p className="listDescription">Description:&nbsp;{book.volumeInfo.description}</p>
+                                        <button className="btn save-button heading-subtitle ml-2" type="btn btn-md" label="search" 
                                         onClick={() => this.handleSaveBook(book.id)}>
-                                            <i className="fas fa-save"></i></button>
+                                            Save
+                                        </button>
                                     </ListItem>
                                     </React.Fragment>
                                 ))}
