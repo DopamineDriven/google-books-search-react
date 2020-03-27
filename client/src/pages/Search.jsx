@@ -4,9 +4,16 @@ import React, { Component } from 'react';
 class Search extends Component {
     state = {
         books: [],
-        title: "",
+        query: "",
         errorMsg: 'Input Book Title'
      }
+
+     handleInputDelta = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        })
+    }
 
      render() {
          return (
