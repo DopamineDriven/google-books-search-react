@@ -71,19 +71,14 @@ class Search extends Component {
         this.fetchBooksGoogle();
     }
 
-    handleSaveBook = (id) => {
-        let objectBooks = this.state.books.filter(objectBooks => objectBooks.id === id)
-        console.log(this.state.objectBooks)
-        objectBooks = objectBooks[0];
-        API.saveBook({objectBooks
-            // googleId: book.id,
-            // title: book.volumeInfo.title,
-            // subtitle: book.volumeInfo.subtitle,
-            // authors: book.volumeInfo.authors,
-            // link: book.volumeInfo.infoLink,
-            // date: book.volumeInfo.publishedDate,
-            // description: book.volumeInfo.description,
-            // image: book.volumeInfo.imageLinks.thumbnail
+    handleSaveBook = (pBook) => {
+        // destructure id
+        const { id } = pBook;
+        const library = [...this.state.books ] 
+        const bookToSave = library.filter( book =>book.id === id)[0]
+
+   
+        API.saveBook({...bookToSave
         }).then(() => this.setState({ errorMsg: alert("Book saved")})
             // console.log(book.volumeInfo)
             // this.setState({

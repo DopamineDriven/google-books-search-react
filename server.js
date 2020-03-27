@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // connect to MongoDB
-const MONGODB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@ds157459.mlab.com:57459/heroku_vh0wd2hf`
+const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds157459.mlab.com:57459/heroku_vh0wd2hf`
 console.log(MONGODB_URI)
 const remotely = process.env.MONGODB_URI
 const locally = "mongodb://localhost/google-books-search-react"

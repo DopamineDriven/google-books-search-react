@@ -16,7 +16,7 @@ export default {
     },
     // Saves a book to the database
     saveBook: function (objectBooks) {
-        console.log(`${objectBooks} is saved to saveBook`)
+        console.log(`${JSON.stringify(objectBooks)} is saved to saveBook`)
         return axios.post("/api/books", objectBooks)
     }
 };
