@@ -2,40 +2,59 @@ import React from "react";
 import './Navbar.css';
 // import Container from '../Container/Container.jsx'
 import ReactLogo from '../../images/Logo.png'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <div className="container-fluid">
-            <a href="/" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
                 <img src={ReactLogo} alt="react" className="img-fluid" height="99.66px" width="99.6px"/>
-            </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            </Link>
+            {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
+            <div className="collapse navbar-collapse" id="navbarResponsive"> */}
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <a href="/" className="navbar-brand">
-                            Google Books Search
-                        </a>
+                        <Link 
+                            to="/" 
+                            className={
+                                window.location.pathname === "/" || window.location.pathname === "/home"
+                                ? "nav-link active"
+                                : "nav-link"
+                            }>
+                            Home
+                        </Link>
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <a href="/saved" className="navbar-brand">
-                            Saved
-                        </a>
-                    </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <a href="/search" className="navbar-brand">
+                        <Link 
+                            to="/search" 
+                            className={
+                                window.location.pathname === "/search"
+                                    ? "nav-link active"
+                                    : "nav-link" 
+                            }>
                             Search
-                        </a>
+                        </Link>
                     </li>
                 </ul>
-            </div>
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                        <Link 
+                            to="/saved" 
+                            className={
+                                window.location.pathname === "/saved"
+                                ? "nav-link active"
+                                : "nav-link"
+                            }>
+                            Saved
+                        </Link>
+                    </li>
+                </ul>
+            {/* </div> */}
             </div>
     </nav>
   )

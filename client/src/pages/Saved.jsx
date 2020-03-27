@@ -44,7 +44,7 @@ const Saved = () => {
                             React Google Books Search
                         </h1>
                         <h2 className="text-center">
-                            Search for  Save Books
+                            Search for and Save Books
                         </h2>
                     </Jumbotron>
                 </Col>
