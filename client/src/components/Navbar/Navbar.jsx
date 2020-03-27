@@ -5,17 +5,31 @@ import ReactLogo from '../../images/Logo.png'
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+
+    // use state expanded and setExpanded onClick
+    // circle back puta
   return (
-    <nav className="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-        <div className="container-fluid">
-            <Link to="/" className="navbar-brand">
+      <React.Fragment>
+        <nav className="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+            <Link
+                to="/" 
+                className="navbar-brand">
                 <img src={ReactLogo} alt="react" className="img-fluid" height="99.66px" width="99.6px"/>
             </Link>
-            {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span className="navbar-toggler-icon"></span>
+            
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+            <span className="navbar-toggler-icon" />
             </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive"> */}
-                <ul className="navbar-nav ml-auto">
+        <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
                     <li className="nav-item">
                         <Link 
                             to="/" 
@@ -27,10 +41,8 @@ const Navbar = () => {
                             Home
                         </Link>
                     </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <Link 
+                        <Link
                             to="/search" 
                             className={
                                 window.location.pathname === "/search"
@@ -40,10 +52,8 @@ const Navbar = () => {
                             Search
                         </Link>
                     </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <Link 
+                        <Link
                             to="/saved" 
                             className={
                                 window.location.pathname === "/saved"
@@ -54,9 +64,9 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
-            {/* </div> */}
-            </div>
+           </div>
     </nav>
+    </React.Fragment>
   )
 }
 

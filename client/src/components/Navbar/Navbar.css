@@ -24,3 +24,11 @@
   font-size: larger;
   border-bottom: solid white 1px;
 }
+
+.navbar-dark {
+  letter-spacing: 0.1em;
+}
+
+.navbar-item {
+  float: right;
+}

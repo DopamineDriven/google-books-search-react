@@ -4,9 +4,9 @@ import Wrapper from "../components/Wrapper/Wrapper.jsx";
 import API from "../utils/API.js";
 import { Col, Row, Container } from "../components/Grid/Grid.jsx";
 import { List, ListItem } from "../components/List/List.jsx";
-import { Input, FormBtn } from "../components/Form/Form.jsx";
 import Moment from "moment";
 import { toast } from "react-toastify";
+import './Pages.css'
 
 class Search extends Component {
     state = {
@@ -51,9 +51,9 @@ class Search extends Component {
     fetchBooksGoogle = () => {
         if (this.state.query) {
             API.getBooksGoogle(this.state.query)
-                .then(res => {
-                    this.loadBooks(res.data.items)
-                })
+            .then(res => {
+                this.loadBooks(res.data.items)
+            })
                 .catch(() => {
                     toast.error('Search did not match any book results')
                     this.setState({
@@ -66,6 +66,7 @@ class Search extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault(this.state.query);
+        toast.info('Searching books...')
         this.fetchBooksGoogle();
     }
 
@@ -73,7 +74,7 @@ class Search extends Component {
         const book = this.state.books.find(book => book.id === id)
 
         API.saveBook({
-            googleid: book.id,
+            googleId: book.id,
             title: book.volumeInfo.title,
             subtitle: book.volumeInfo.subtitle,
             authors: book.volumeInfo.authors,
@@ -81,13 +82,12 @@ class Search extends Component {
             date: book.volumeInfo.publishedDate,
             description: book.volumeInfo.description,
             image: book.volumeInfo.imageLinks.thumbnail
-        })
-            .then(() => {
-            console.log(book.volumeInfo)
-            this.setState({
-                books: this.state.books.filter(book => book.id !== id)
-              });
-            }).catch(err => console.log(err));
+        }).then(() => this.fetchBooksGoogle()
+            // console.log(book.volumeInfo)
+            // this.setState({
+            //     books: this.state.books.filter(book => book.id !== id)
+            //   });
+            ).catch(err => console.log(err));
           }
 
     render() {
@@ -108,25 +108,32 @@ class Search extends Component {
                 <Row className="rowSearch">
                     <Col size="md-12">
                         <Wrapper>
-                            <form className="searchForm">
-                                <p className="searchFormHeading text-white">Book Search</p>
-                                    <Input 
-                                        className="searchFormInput"
+                            <form className="form-inline">
+                                <div className="form-group mx-sm-3 mb-2">
+                                    <label htmlFor="Title" className="sr-only">
+                                        Search Book Title
+                                    </label>
+                                    <input
+                                        className="form-control heading-subtitle"
+                                        id="title"
+                                        type="text"
                                         value={this.state.query}
                                         onChange={this.handleInputDelta}
                                         name="query"
                                         placeholder="Title (required)"
+                                        size="50"
+                                        required
                                     />
-                                    <FormBtn 
-                                        className="searchFormBtn"
+                                    </div>
+                                    <button 
+                                        className="btn btn-lg search-button heading-subtitle"
                                         // if no search query, disable the button
                                         disabled={!(this.state.query)}
-                                        onClick={
-                                            this.handleFormSubmit}
-                                            text="search"
+                                        onClick={this.handleFormSubmit}
+                                        type="submit"
                                     >
-                                        <i className="fas fa-search"></i>
-                                    </FormBtn>
+                                        Search
+                                    </button>
                             </form>
                         </Wrapper>
                     </Col>
@@ -134,21 +141,34 @@ class Search extends Component {
                 <Row>
                     <Col size="md-12 sm-12">
                         {this.state.books.length ? (
-                            <List>
+                            <List className="listGroup">
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={book.volumeInfo.infoLink} rel="noreferrer" target="__blank">{book.volumeInfo.title}&nbsp;—&nbsp;{book.volumeInfo.subtitle}</a>
+                                    <a href={book.link} rel="noreferrer" target="__blank">
+                                        {book.title}&nbsp;—&nbsp;{book.subtitle}
+                                    </a>
                                         <br/>
-                                        <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} className="bookImage" />
-                                        <p className="listAuthor">Author(s):&nbsp;{book.volumeInfo.authors.join(", ")}</p>
-                                        <p className="listPublish">Published:&nbsp;{Moment(book.volumeInfo.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
-                                            .format("MM-DD-YYYY")}</p>
-                                        <p className="listDescription">Description:&nbsp;{book.volumeInfo.description}</p>
-                                        <button className="btn save-button heading-subtitle ml-2" type="btn btn-md" label="search" 
-                                        onClick={() => this.handleSaveBook(book.id)}>
-                                            Save
-                                        </button>
+                                    <img src={book.image} alt={book.title} className="bookImage" />
+                                    <p className="listAuthor">
+                                        Author(s):&nbsp;{book.authors.join(", ")}
+                                    </p>
+                                    <p className="listPublish">
+                                        Published:&nbsp;
+                                        {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                        .format("MM-DD-YYYY")}
+                                    </p>
+                                    <p className="listDescription">
+                                        Description:&nbsp;{book.description}
+                                    </p>
+                                    <button 
+                                        className="btn save-button heading-subtitle ml-2" 
+                                        type="btn btn-md" 
+                                        label="search" 
+                                        onClick={() => this.handleSaveBook(book.id)}
+                                    >
+                                        Save
+                                    </button>
                                     </ListItem>
                                     </React.Fragment>
                                 ))}
