@@ -22,9 +22,11 @@ const booksSchema = new Schema({
     },
     image: {
         type: String || URL
+        // validate: /^(https:\/\/www\.|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
     },
     link: {
         type: String || URL
+        // validate: /^(https:\/\/www\.|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
     },
     publishedDate: {
         type: Date,
