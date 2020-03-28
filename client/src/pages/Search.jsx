@@ -29,10 +29,11 @@ class Search extends Component {
                     publishedDate: data[i].volumeInfo.publishedDate,
                     description: data[i].volumeInfo.description,
                     // display image as contained thumbnail
-                    image: data[i].volumeInfo.imageLinks.thumbnail,
+                    image: `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`,
                     // display preview link if exists
-                    link: data[i].volumeInfo.infoLink
+                    link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.infoLink}&hl=&source=gbs_api`
                 }
+                // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.infoLink}&hl=&source=gbs_api`
                 console.log(items)
                 objectBooks.books.push(items)
             }
