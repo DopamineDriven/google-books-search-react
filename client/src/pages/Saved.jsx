@@ -45,7 +45,7 @@ const Saved = () => {
                         <List>
                             {books.map(book => (
                                 <ListItem key = {book._id}>
-                                     <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
+                                     <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title.concat()}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
                                         {book.title}&nbsp;—&nbsp;{book.subtitle}
                                     </a>
                                         <br/>

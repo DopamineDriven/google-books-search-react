@@ -31,7 +31,7 @@ class Search extends Component {
                     // display image as contained thumbnail
                     image: `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`,
                     // display preview link if exists
-                    link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title}&hl=&source=gbs_api`
+                    link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title.concat()}&hl=&source=gbs_api`
                 }
                 // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.infoLink}&hl=&source=gbs_api`
                 console.log(items)
@@ -134,7 +134,7 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
+                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title.concat()}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
                                         {book.title}&nbsp;—&nbsp;{book.subtitle}
                                     </a>
                                         <br/>
