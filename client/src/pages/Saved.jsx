@@ -45,13 +45,13 @@ const Saved = () => {
                         <List>
                             {books.map(book => (
                                 <ListItem key = {book._id}>
-                                     <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title.concat()}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
+                                     <a href={book.link} rel="noreferrer" target="__blank">
                                         {book.title}&nbsp;—&nbsp;{book.subtitle}
                                     </a>
                                         <br/>
-                                    <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
+                                    <img src={book.image} alt={book.title} className="bookImage" />
                                     <p className="listAuthor">
-                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
+                                    <strong>Author(s):</strong>&nbsp;{book.authors}
                                     </p>
                                     <p className="listPublish">
                                     <strong>Pulished:</strong>&nbsp;

@@ -29,10 +29,11 @@ class Search extends Component {
                     publishedDate: data[i].volumeInfo.publishedDate,
                     description: data[i].volumeInfo.description,
                     // display image as contained thumbnail
-                    image: `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`,
+                    image: data[i].volumeInfo.imageLinks.thumbnail,
                     // display preview link if exists
-                    link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title.concat()}&hl=&source=gbs_api`
+                    link: data[i].volumeInfo.infoLink
                 }
+                // `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`
                 // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.infoLink}&hl=&source=gbs_api`
                 console.log(items)
                 objectBooks.books.push(items)
@@ -72,9 +73,9 @@ class Search extends Component {
         this.fetchBooksGoogle();
     }
     // can uncomment const {id} = pBook and delete id from book.id on line 157
-    handleSaveBook = (pBook) => {
+    handleSaveBook = (id) => {
         // destructure id
-        const { id } = pBook;
+        // const { id } = pBook;
         // use spread to clone state
         const library = [ ...this.state.books ] 
         // get element [0] of array
@@ -134,11 +135,11 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title.concat()}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
+                                    <a href={book.link} rel="noreferrer" target="__blank">
                                         {book.title}&nbsp;—&nbsp;{book.subtitle}
                                     </a>
                                         <br/>
-                                    <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
+                                    <img src={book.image} alt={book.title} className="bookImage" />
                                     <p className="listAuthor">
                                     <strong>Author(s):</strong>&nbsp;{book.authors}
                                     </p>
@@ -155,7 +156,7 @@ class Search extends Component {
                                         type="btn btn-md" 
                                         label="search"
                                         book={this.state.books}
-                                        onClick={() => this.handleSaveBook(book)}
+                                        onClick={() => this.handleSaveBook(book.id)}
                                     >
                                        <strong>Save</strong>
                                     </button>
