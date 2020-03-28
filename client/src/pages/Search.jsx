@@ -70,10 +70,10 @@ class Search extends Component {
         toast.info('Searching books...')
         this.fetchBooksGoogle();
     }
-
-    handleSaveBook = (pBook) => {
+    // can uncomment const {id} = pBook and delete id from book.id on line 157
+    handleSaveBook = (id) => {
         // destructure id
-        const { id } = pBook;
+        // const { id } = pBook;
         // use spread to clone state
         const library = [ ...this.state.books ] 
         // get element [0] of array
@@ -154,7 +154,7 @@ class Search extends Component {
                                         type="btn btn-md" 
                                         label="search"
                                         book={this.state.books}
-                                        onClick={() => this.handleSaveBook(book)}
+                                        onClick={() => this.handleSaveBook(book.id)}
                                     >
                                        <strong>Save</strong>
                                     </button>
