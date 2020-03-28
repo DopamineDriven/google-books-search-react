@@ -29,9 +29,9 @@ class Search extends Component {
                     publishedDate: data[i].volumeInfo.publishedDate,
                     description: data[i].volumeInfo.description,
                     // display image as contained thumbnail
-                    image: data[i].volumeInfo.imageLinks.thumbnail,
+                    image: `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`,
                     // display preview link if exists
-                    link: data[i].volumeInfo.infoLink
+                    link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title}&hl=&source=gbs_api`
                 }
 
                 // if (data[i].volumeInfo.imageLinks.thumbnail.innerHTML === "http:") {
@@ -39,7 +39,7 @@ class Search extends Component {
                 //     data[i].volumeInfo.imageLinks.thumbnail.innerHTML.splice('http:').prepend('https:')                    
                 // } 
                 // `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`
-                // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.infoLink}&hl=&source=gbs_api`
+                // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title}&hl=&source=gbs_api`
                 console.log(items)
                 objectBooks.books.push(items)
             }
@@ -141,11 +141,11 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={book.link} rel="noreferrer" target="__blank">
+                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
                                         {book.title}&nbsp;—&nbsp;{book.subtitle}
                                     </a>
                                         <br/>
-                                    <img src={book.image} alt={book.title} className="bookImage" />
+                                    <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
                                     <p className="listAuthor">
                                     <strong>Author(s):</strong>&nbsp;{book.authors}
                                     </p>
