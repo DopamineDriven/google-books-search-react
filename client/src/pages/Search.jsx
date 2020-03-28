@@ -71,9 +71,9 @@ class Search extends Component {
         this.fetchBooksGoogle();
     }
     // can uncomment const {id} = pBook and delete id from book.id on line 157
-    handleSaveBook = (id) => {
+    handleSaveBook = (pBook) => {
         // destructure id
-        // const { id } = pBook;
+        const { id } = pBook;
         // use spread to clone state
         const library = [ ...this.state.books ] 
         // get element [0] of array
@@ -154,7 +154,7 @@ class Search extends Component {
                                         type="btn btn-md" 
                                         label="search"
                                         book={this.state.books}
-                                        onClick={() => this.handleSaveBook(book.id)}
+                                        onClick={() => this.handleSaveBook(book)}
                                     >
                                        <strong>Save</strong>
                                     </button>
