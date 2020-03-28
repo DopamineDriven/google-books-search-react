@@ -22,9 +22,8 @@ app.use(routes);
 // connect to MongoDB
 const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds157459.mlab.com:57459/heroku_vh0wd2hf`
 console.log(MONGODB_URI)
-const remotely = process.env.MONGODB_URI
 const locally = "mongodb://localhost/google-books-search-react"
-mongoose.connect(remotely || locally, {
+mongoose.connect(process.env.MONGODB_URI || locally, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
@@ -33,7 +32,7 @@ mongoose.connect(remotely || locally, {
 
 // Start API server
 app.listen(PORT, () => {
-  if (remotely) {
+  if (mongoose.connect === process.env.MONGODB_URI) {
     console.log(`🌎 ==> API Server now listening remotely on heroku `);
   }
     console.log(`🌎 ==> API Server now listening on http://localhost:${PORT}!`);
