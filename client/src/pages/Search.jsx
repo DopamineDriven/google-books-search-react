@@ -33,13 +33,6 @@ class Search extends Component {
                     // display preview link if exists
                     link: `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title}&hl=&source=gbs_api`
                 }
-
-                // if (data[i].volumeInfo.imageLinks.thumbnail.innerHTML === "http:") {
-                //     console.log("value returned contains http")
-                //     data[i].volumeInfo.imageLinks.thumbnail.innerHTML.splice('http:').prepend('https:')                    
-                // } 
-                // `https://books.google.com/books/content?id=${data[i].id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`
-                // `https://books.google.com/books?id=${data[i].id}&dq=${data[i].volumeInfo.title}&hl=&source=gbs_api`
                 console.log(items)
                 objectBooks.books.push(items)
             }
@@ -94,8 +87,9 @@ class Search extends Component {
             // this.setState({
             //     books: this.state.books.filter(book => book.id !== id)
             //   });
-            ).catch(err => console.log(err));
-          }
+            ).catch(err => console.log(err)
+        )
+    };
 
     render() {
         return (
