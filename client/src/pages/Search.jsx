@@ -142,12 +142,13 @@ class Search extends Component {
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
                                     <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
-                                        {book.title}&nbsp;—&nbsp;{book.subtitle}
+                                        {book.title}<br/>{book.subtitle}
                                     </a>
                                         <br/>
                                     <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
+                                        <br/>
                                     <p className="listAuthor">
-                                    <strong>Author(s):</strong>&nbsp;{book.authors}
+                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
                                     </p>
                                     <p className="listPublish">
                                     <strong>Pulished:</strong>&nbsp;
