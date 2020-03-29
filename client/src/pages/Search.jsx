@@ -83,10 +83,6 @@ class Search extends Component {
         // save
         API.saveBook(bookToSave)
         .then(() => this.setState({ msg: alert(`${bookToSave.title} saved`)})
-            // console.log(book.volumeInfo)
-            // this.setState({
-            //     books: this.state.books.filter(book => book.id !== id)
-            //   });
             ).catch(err => console.log(err)
         )
     };
@@ -135,19 +131,23 @@ class Search extends Component {
                                 {this.state.books.map(book => (
                                     <React.Fragment key = {book.id}>
                                     <ListItem key = {book.id}>
-                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} rel="noreferrer" target="__blank">
+                                    <a href={`https://books.google.com/books?id=${book.id}&dq=${book.title}&hl=&source=gbs_api`} 
+                                        rel="noreferrer" target="__blank"
+                                    >
                                         {book.title}<br/>{book.subtitle}
                                     </a>
                                         <br/>
-                                    <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
+                                    <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} 
+                                        alt={book.title} className="bookImage" 
+                                    />
                                         <br/>
                                     <p className="listAuthor">
-                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
+                                        <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
                                     </p>
                                     <p className="listPublish">
-                                    <strong>Pulished:</strong>&nbsp;
-                                        {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
-                                        .format("MM-DD-YYYY")}
+                                        <strong>Pulished:</strong>&nbsp;
+                                            {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                            .format("MM-DD-YYYY")}
                                     </p>
                                     <p className="listDescription">
                                         <strong>Description:</strong>&nbsp;{book.description}
