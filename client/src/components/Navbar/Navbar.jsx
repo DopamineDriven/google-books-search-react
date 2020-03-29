@@ -34,21 +34,9 @@ const Navbar = () => {
                         <Link 
                             to="/" 
                             className={
-                                window.location.pathname === "/" || window.location.pathname === "/home"
+                                window.location.pathname === "/" || window.location.pathname === "/search"
                                 ? "nav-link active"
                                 : "nav-link"
-                            }>
-                            Home
-                        </Link>
-                    </li>
-                    &nbsp;|&nbsp;
-                    <li className="nav-item">
-                        <Link
-                            to="/search" 
-                            className={
-                                window.location.pathname === "/search"
-                                    ? "nav-link active"
-                                    : "nav-link" 
                             }>
                             Search
                         </Link>
