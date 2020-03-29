@@ -25,16 +25,21 @@ const Saved = () => {
     const handleFetchBooks = () => {
         API.getBooks()
             // setBooks replaces this.setState
-            .then(res => setBooks(res.data))
-            .catch(error => console.log(error))
+            .then(res => 
+                setBooks(res.data))
+            .catch(error => 
+                console.log(error))
     }
 
     // handles the deletion of a book by id from the saved page
     const handleDiscardBook = id => {
         API.deleteBook(id)
-            .then(() => setMsg({ msg: alert(`book deleted`) }))
-            .then(() => handleFetchBooks())
-            .catch(error => console.log(error))
+            .then(() => 
+                setMsg({ msg: alert(`book deleted`) }))
+            .then(() => 
+                handleFetchBooks())
+            .catch(error => 
+                console.log(error))
     };
 
 
@@ -54,12 +59,12 @@ const Saved = () => {
                                     <img src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`} alt={book.title} className="bookImage" />
                                         <br/>
                                     <p className="listAuthor">
-                                    <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
+                                        <strong>Author(s):</strong>&nbsp;{book.authors.join(", ")}
                                     </p>
                                     <p className="listPublish">
-                                    <strong>Pulished:</strong>&nbsp;
-                                        {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
-                                        .format("MM-DD-YYYY")}
+                                        <strong>Pulished:</strong>&nbsp;
+                                            {Moment(book.publishedDate, 'YYYY-MM-DDTHh:mm:ss')
+                                            .format("MM-DD-YYYY")}
                                     </p>
                                     <p className="listDescription">
                                         <strong>Description:</strong>&nbsp;{book.description}
