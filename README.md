@@ -1,35 +1,26 @@
-# google-books-search-react
+# React-Google-Books-App
 
-- Heroku Deployed
-    - https://react-google-books-app.herokuapp.com/
+## Heroku Deployed
+- https://react-google-books-app.herokuapp.com/
 
+## Troubleshooting compromised site-security in production
+- No errors or warnings in development running react strict mode
+- Once deployed to heroku the site went from secure to not secure after querying a searh
+- Google Books API returns URLs for image thumbnails and links
+- Of the links returned, some were a mixture of https and http
+- The presence of http hyperlinks within returned objects compromised site security
+- A number of troubleshooting approachs were implemented but ultimately the URL calling the image and link items was diretly modified (see client/src/pages), forcing the API to only return https URLs
+- This resolved the "not secure" issue in production 
 
-## polyfill for backwards compatibility
+## Polyfill for backwards compatibility
 - Utilized react-app-polyfill npm to support backwards compatibility
 - Supports IE9 and IE11 browsers
 - Polyfill files imported in client/src/index.jsx where ReactDOM rendering occurs
+- Tested the deployed website on IE before and after incorporating polyfill dependencies
+    - Before polyfill: the background color loaded absent content; browser began to freeze
+    - After polyfill: the entirety of the app loaded and the database populating the Saved page loaded all books stored
+    - Searching, saving, and deleting all function as intended on IE9/IE11
 
-- Heroku Deployed
-    - https://react-google-books-app.herokuapp.com/
-
-    "http://books.google.com/books/content?id=4qsYinaVXQ8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-
-    "https://books.google.com/books/content?id=SFvipW4rJnYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-
-- attempted to manipulate
-
-google-books-search-react\client\node_modules\react-scripts\config\webpackDevServer.config.js
-
-- commented out line 18
-const getHttpsConfig = require('./getHttpsConfig')
-
-- added the following on line 20
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-
-- modified line 102 from
-https: getHttpsConfig(),
-
-- to
-https: protocol === 'https',
-
-- This should, in turn, force the app to use HTTPS even with fetching api-mediated data (namely links and images as those are URL data types and have been a recurring issue having http and https mixed in depending on query)
+## Future Development
+- Incorporate passport and bcrypt for user serialization/deserialization and password hashing/unhashing, respectively
+- Add filters to the search component; sort by date, author, etc
