@@ -3,11 +3,11 @@
 - Heroku Deployed
     - https://react-google-books-app.herokuapp.com/
 
-    "http://books.google.com/books/content?id=4qsYinaVXQ8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
 
-    "https://books.google.com/books/content?id=SFvipW4rJnYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-
-    # google-books-search-react
+## polyfill for backwards compatibility
+- Utilized react-app-polyfill npm to support backwards compatibility
+- Supports IE9 and IE11 browsers
+- Polyfill files imported in client/src/index.jsx where ReactDOM rendering occurs
 
 - Heroku Deployed
     - https://react-google-books-app.herokuapp.com/
