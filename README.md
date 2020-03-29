@@ -3,6 +3,9 @@
 ## Heroku Deployed
 - https://react-google-books-app.herokuapp.com/
 
+## mLab
+- Utilized mLab dyno Heroku for remote database purposes
+
 ## Troubleshooting compromised site-security in production
 - No errors or warnings in development running react strict mode
 - Once deployed to heroku the site went from secure to not secure after querying a searh
