@@ -17,7 +17,7 @@ const Jumbotron = () => {
                     <br/>
                     
                 </h2>
-                <p><i className="fas fa-book-open fa-5x" aria-hidden="true"></i></p>
+                <p><i className="fas fa-book-open fa-5x justify-content-center" aria-hidden="true"></i></p>
             </span>      
           </MDBJumbotron>
         </MDBCol>

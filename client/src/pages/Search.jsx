@@ -122,13 +122,13 @@ class Search extends Component {
                                     />
                                     </div>
                                     <button 
-                                        className="btn btn-lg search-button heading-subtitle"
+                                        className="btn btn-lg search-button heading-subtitle bg-white"
                                         // if no search query, disable the button
                                         disabled={!(this.state.query)}
                                         onClick={this.handleFormSubmit}
                                         type="submit"
                                     >
-                                        Search
+                                        <strong>Search</strong>
                                     </button>
                             </form>
                         </Wrapper>
