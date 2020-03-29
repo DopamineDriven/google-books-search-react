@@ -4,7 +4,7 @@
 - https://react-google-books-app.herokuapp.com/
 
 ## mLab
-- Utilized mLab dyno Heroku for remote database purposes
+- Utilized mLab MongoDB dyno for remote database
 
 ## Troubleshooting compromised site-security in production
 - No errors or warnings in development running react strict mode
