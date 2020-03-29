@@ -12,6 +12,7 @@ const Saved = () => {
 
     // useState Hook
     const [books, setBooks] = useState([]);
+    const [msg, setMsg] = useState("");
     
     // populate all books and store them via setBooks useEffect
     // this replaces componentDidMount () {this.loadBooks()}
@@ -31,7 +32,8 @@ const Saved = () => {
     // handles the deletion of a book by id from the saved page
     const handleDiscardBook = id => {
         API.deleteBook(id)
-            .then(handleFetchBooks())
+            .then(() => setMsg({ msg: alert(`book deleted`) }))
+            .then(() => handleFetchBooks())
             .catch(error => console.log(error))
     };
 
@@ -75,7 +77,7 @@ const Saved = () => {
                             ))}
                         </List>
                     ) : (
-                        <p className="searchFormAlert">No saved books to display</p>
+                        <p className="searchFormAlert">{msg}</p>
                     )}
                 </Col>
             </Row>

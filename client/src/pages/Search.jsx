@@ -12,7 +12,7 @@ class Search extends Component {
     state = {
         books: [],
         query: "",
-        errorMsg: ''
+        msg: ''
      }
 
      loadBooks = (data) => {
@@ -66,7 +66,7 @@ class Search extends Component {
                     toast.error('Search did not match any book results')
                     this.setState({
                         books: [],
-                        errorMsg: "No books found related to your query"
+                        msg: "No books found related to your query"
                     })
                 })
         }
@@ -89,7 +89,7 @@ class Search extends Component {
 
         // save
         API.saveBook(bookToSave)
-        .then(() => this.setState({ errorMsg: alert(`${bookToSave.title} saved`)})
+        .then(() => this.setState({ msg: alert(`${bookToSave.title} saved`)})
             // console.log(book.volumeInfo)
             // this.setState({
             //     books: this.state.books.filter(book => book.id !== id)
@@ -172,7 +172,7 @@ class Search extends Component {
                                 ))}
                             </List>
                         ) : (
-                            <p className="searchFormOpen">{this.state.errorMsg}</p>
+                            <p className="searchFormOpen">{this.state.msg}</p>
                         )}
                     </Col>
                 </Row>
