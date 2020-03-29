@@ -21,8 +21,7 @@
 - Polyfill files imported in client/src/index.jsx where ReactDOM rendering occurs
 - Tested the deployed website on IE before and after incorporating polyfill dependencies
     - Before polyfill: the background color loaded absent content; browser began to freeze
-    - After polyfill: the entirety of the app loaded and the database populating the Saved page loaded all books stored
-    - Searching, saving, and deleting all function as intended on IE9/IE11
+    - After polyfill: the entirety of the app populated; uncompromised functionality
 
 ## Future Development
 - Incorporate passport and bcrypt for user serialization/deserialization and password hashing/unhashing, respectively
