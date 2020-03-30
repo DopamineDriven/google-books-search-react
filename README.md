@@ -12,7 +12,7 @@
 - Google Books API returns URLs for image thumbnails and links
 - Of the links returned, some were a mixture of https and http
 - The presence of http hyperlinks within returned objects compromised site security
-- A number of troubleshooting approaches were implemented but ultimately the URL calling the image and link items was diretly modified (see client/src/pages), forcing the API to only return https URLs
+- A number of troubleshooting approaches were implemented but ultimately the URL calling the image and link items was directly modified (see client/src/pages) forcing the API to return only https URLs
 - This resolved the "not secure" issue in production 
 
 ## Polyfill for backwards compatibility
