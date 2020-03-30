@@ -8,7 +8,7 @@
 
 ## Troubleshooting compromised site-security in production
 - No errors or warnings in development running react strict mode
-- Once deployed to heroku the site went from secure to not secure after querying a searh
+- Once deployed to heroku the site went from secure to not secure after querying a search
 - Google Books API returns URLs for image thumbnails and links
 - Of the links returned, some were a mixture of https and http
 - The presence of http hyperlinks within returned objects compromised site security
