@@ -76,7 +76,7 @@ const Saved = () => {
                                     <button 
                                         className="deleteButton btn delete-button heading-subtitle ml-2"
                                         type="btn btn-md"
-                                        lavel="delete"
+                                        label="delete"
                                         onClick={() => 
                                             handleDiscardBook(book._id)}
                                     >

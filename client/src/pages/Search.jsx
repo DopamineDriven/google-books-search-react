@@ -71,7 +71,11 @@ class Search extends Component {
         toast.info('Searching books...')
         this.fetchBooksGoogle();
     }
-    // can uncomment const {id} = pBook and delete id from book.id on line 157
+    // can uncomment const {id} = pBook and delete id from book.id in
+    // the handleSaveBook onClick event in render
+    // conversely, you can comment out { id } = pBook and replace
+    // pBook as a param with id; in that case, ensure that the
+    // handleSaveBook Click (e) has (book) sans .id
     handleSaveBook = (pBook) => {
         // destructure id
         const { id } = pBook;
