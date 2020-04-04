@@ -5,6 +5,7 @@ import { Col, Row, Container } from '../components/Grid/Grid.jsx';
 import { List, ListItem } from '../components/List/List.jsx';
 import Moment from 'moment';
 import './Pages.css';
+import { toast } from 'react-toastify';
 
 
 // Utilizing functional over class components
@@ -33,9 +34,10 @@ const Saved = () => {
 
     // handles the deletion of a book by id from the saved page
     const handleDiscardBook = id => {
+        console.log(id)
         API.deleteBook(id)
             .then(() => 
-                setMsg({ msg: alert(`book deleted`) }))
+                setMsg({ msg: toast.success(`book deleted`) }))
             .then(() => 
                 handleFetchBooks())
             .catch(error => 

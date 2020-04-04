@@ -86,8 +86,9 @@ class Search extends Component {
 
         // save
         API.saveBook(bookToSave)
-        .then(() => this.setState({ msg: alert(`${bookToSave.title} saved`)})
-            ).catch(err => console.log(err)
+        .then(() => this.setState({ msg: toast.success(`${bookToSave.title} saved successfully!`)})
+            )
+            .catch(err => console.log(err)
         )
     };
 
@@ -116,7 +117,7 @@ class Search extends Component {
                                     />
                                     </div>
                                     <button 
-                                        className="btn btn-lg search-button heading-subtitle bg-white"
+                                        className={"btn btn-lg search-button heading-subtitle bg-white"}
                                         // if no search query, disable the button
                                         disabled={!(this.state.query)}
                                         onClick={this.handleFormSubmit}
