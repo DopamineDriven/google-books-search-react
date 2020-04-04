@@ -5,7 +5,6 @@ import Search from './pages/Search.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Wrapper from './components/Wrapper/Wrapper.jsx';
-import { ToastContainer, Slide, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 
 const App = () => {
@@ -18,7 +17,6 @@ const App = () => {
           <Route exact path="/search" component={Search} />
           <Route exact path="/saved" component={Saved} />
         </React.Fragment>
-      <ToastContainer transition={Slide} className={toast.POSITION.TOP_CENTER} />
       </Wrapper>
       <Footer />
     </BrowserRouter>

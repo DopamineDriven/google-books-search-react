@@ -4,7 +4,7 @@ import API from "../utils/API.js";
 import { Col, Row, Container } from "../components/Grid/Grid.jsx";
 import { List, ListItem } from "../components/List/List.jsx";
 import Moment from "moment";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from 'react-toastify';
 import './Pages.css'
 import Jumbotron from '../components/Jumbotron/Jumbotron.jsx';
 
@@ -175,6 +175,7 @@ class Search extends Component {
                         )}
                     </Col>
                 </Row>
+                <ToastContainer />
             </Container>
         )
     }
