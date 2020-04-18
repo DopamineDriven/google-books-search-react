@@ -5,6 +5,7 @@ const routes = require('./routes');
 const app = express();
 // const cors = require('cors');
 const PORT = process.env.PORT || 3001;
+const isProd = process.env.NODE_ENV === 'production';
 
 // app.use(cors());
 
@@ -23,7 +24,7 @@ app.use(routes);
 const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds157459.mlab.com:57459/heroku_vh0wd2hf`
 console.log(MONGODB_URI)
 const locally = "mongodb://localhost/google-books-search-react"
-mongoose.connect(process.env.MONGODB_URI || locally, {
+mongoose.connect(isProd ? process.env.MONGODB_URI : locally, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
